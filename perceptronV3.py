@@ -110,7 +110,7 @@ def pocketAlgorithm(trainInput, trainOutput):
         randomErrorIndex= choice(errorList)
         
         # 针对随机选的点对感知器进行修正
-        tempWeight = tempWeight + alpha * trainOutput[randomErrorIndex] * trainOutput[randomErrorIndex]
+        tempWeight = tempWeight + alpha * trainInputNormed[randomErrorIndex] * trainOutput[randomErrorIndex]
         #print("tempWeight \n", tempWeight, "\n\n")
           
         # 确保相应的迭代次数过后退出循环

@@ -1,3 +1,6 @@
+#身高，体重，肺活量， 50 米跑，立定跳远，坐位体前屈 -> 长跑成绩
+#只针对女同学
+
 # 导入
 import numpy as np
 import matplotlib.pyplot as plt
@@ -29,7 +32,7 @@ def loadData():
         # 方便之后矩阵运算
         vec = [1.0]
         
-        # 把输出和输入存在不同的列表中
+        # 把每行数据的输出和输入存在不同的列表中
         for cell in row:
 
             if(cell.column == 7): 
@@ -130,10 +133,10 @@ def testModel(theta, testMat, testTargetMat):
 
 
 #训练和测试模型，绘图
-# a1,a2,a3,a4 = loadData()
-# theta, JTheta = gradDescent(a1,a2)
-# print(theta)
-# costValues = testModel(theta,a3,a4)
+a1,a2,a3,a4 = loadData()
+theta, JTheta = gradDescent(a1,a2)
+print(theta)
+costValues = testModel(theta,a3,a4)
 # print(costValues)
 
 
@@ -154,15 +157,15 @@ def testModel(theta, testMat, testTargetMat):
 
 
 # 同时画出上面两个图
-# plt.figure(1)
-# plt.subplot(211)
-# plt.plot(JTheta, linewidth=1.0)
-# plt.ylabel('cost function')
-# plt.xlabel('iteration times')
+plt.figure(1)
+plt.subplot(211)
+plt.plot(JTheta, linewidth=1.0)
+plt.ylabel('cost function')
+plt.xlabel('iteration times')
 
-# plt.subplot(212)
-# plt.plot(costValues, 'ro')
-# plt.ylabel('differential')
-# plt.xlabel('test input')
-# plt.show()
+plt.subplot(212)
+plt.plot(costValues, 'ro')
+plt.ylabel('differential')
+plt.xlabel('test input')
+plt.show()
 

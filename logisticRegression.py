@@ -1,8 +1,13 @@
+"""
+====================================
+logistic regression - 通过肺活量和立定跳远成绩来预测男女
+====================================
+"""
+
 # 导入
 import numpy as np
 import matplotlib.pyplot as plt
 import math
-
 
 
 # 从csv文件获取所有数据
@@ -36,9 +41,9 @@ def normalize(x):
     xMin = x.min(axis=0)
     xMax = x.max(axis=0)
     range =  xMax - xMin
-    print("xMin \n", xMin)
-    print("xMax \n", xMax)
-    print("range \n", range, "\n\n")
+    # print("xMin \n", xMin)
+    # print("xMax \n", xMax)
+    # print("range \n", range, "\n\n")
     # range[0] = 1
     # xMin[0] = 0
     x_norm = (x - xMin) / range
@@ -65,12 +70,12 @@ def gradDescent(trainInput, trainOutput):
     x_norm = normalize(x)
     xTrans = x_norm.transpose()
     y = np.array(trainOutput)
-    print("x \n", x, "\n\n")
-    print("x_norm \n", x_norm, "\n\n")
-    print("y \n", y, "\n\n")
+    # print("x \n", x, "\n\n")
+    # print("x_norm \n", x_norm, "\n\n")
+    # print("y \n", y, "\n\n")
     
-    alpha = 4
-    numIterations = 1000
+    alpha = 20
+    numIterations = 500
     m,n = x_norm.shape
     theta = np.ones(n)
     nOnes = np.ones(m)      #用来计算代价函数
@@ -87,7 +92,7 @@ def gradDescent(trainInput, trainOutput):
         JTheta.append(cost)
         # print("hypothesis \n", hypothesis)
         # print("loss \n", loss, "\n\n")
-        # print("Iteration %d | Cost: %f" % (i, cost))
+        #print("Iteration %d | Cost: %f" % (i, cost))
         # 计算梯度
         gradient = np.dot(xTrans, loss) / m
         # 更新theta值
@@ -99,7 +104,7 @@ def gradDescent(trainInput, trainOutput):
     
     
     
-# 将模型用于测试数据集，观察每个输入的预测输出与真实值得差别
+# 将模型用于测试数据集，观察每个输入的预测输出与真实值是否相同
 def testModel(theta, testInput, testOutput):
     
     # 将python的list转换成numpy的ndarray，同时将输入的特征向量规范化
